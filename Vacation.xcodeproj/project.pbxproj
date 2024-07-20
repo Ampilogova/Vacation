@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */; };
+		CEE23B282C4B0E0C0029D0BE /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B272C4B0E0C0029D0BE /* CalendarView.swift */; };
+		CEE23B2A2C4B0E0E0029D0BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */; };
+		CEE23B2D2C4B0E0E0029D0BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE23B2C2C4B0E0E0029D0BE /* Preview Assets.xcassets */; };
+		CEE23B372C4B0E0E0029D0BE /* VacationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B362C4B0E0E0029D0BE /* VacationTests.swift */; };
+		CEE23B412C4B0E0E0029D0BE /* VacationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B402C4B0E0E0029D0BE /* VacationUITests.swift */; };
+		CEE23B432C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B422C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift */; };
+		CEE23B502C4B18DE0029D0BE /* CalendarExtentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B4F2C4B18DE0029D0BE /* CalendarExtentionView.swift */; };
+		CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */; };
+		CEE23B542C4B22550029D0BE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B532C4B22550029D0BE /* MainView.swift */; };
+		CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B552C4B26360029D0BE /* Vacation.swift */; };
+		CEE23B582C4B2A4B0029D0BE /* CreateDestionationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CEE23B332C4B0E0E0029D0BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE23B1A2C4B0E0C0029D0BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE23B212C4B0E0C0029D0BE;
+			remoteInfo = Vacation;
+		};
+		CEE23B3D2C4B0E0E0029D0BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEE23B1A2C4B0E0C0029D0BE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEE23B212C4B0E0C0029D0BE;
+			remoteInfo = Vacation;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CEE23B222C4B0E0C0029D0BE /* Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vacation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationApp.swift; sourceTree = "<group>"; };
+		CEE23B272C4B0E0C0029D0BE /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CEE23B2C2C4B0E0E0029D0BE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CEE23B322C4B0E0E0029D0BE /* VacationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VacationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE23B362C4B0E0E0029D0BE /* VacationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationTests.swift; sourceTree = "<group>"; };
+		CEE23B3C2C4B0E0E0029D0BE /* VacationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VacationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEE23B402C4B0E0E0029D0BE /* VacationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationUITests.swift; sourceTree = "<group>"; };
+		CEE23B422C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CEE23B4F2C4B18DE0029D0BE /* CalendarExtentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtentionView.swift; sourceTree = "<group>"; };
+		CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationDatesView.swift; sourceTree = "<group>"; };
+		CEE23B532C4B22550029D0BE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		CEE23B552C4B26360029D0BE /* Vacation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vacation.swift; sourceTree = "<group>"; };
+		CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDestionationView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CEE23B1F2C4B0E0C0029D0BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B2F2C4B0E0E0029D0BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B392C4B0E0E0029D0BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CEE23B192C4B0E0C0029D0BE = {
+			isa = PBXGroup;
+			children = (
+				CEE23B242C4B0E0C0029D0BE /* Vacation */,
+				CEE23B352C4B0E0E0029D0BE /* VacationTests */,
+				CEE23B3F2C4B0E0E0029D0BE /* VacationUITests */,
+				CEE23B232C4B0E0C0029D0BE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CEE23B232C4B0E0C0029D0BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B222C4B0E0C0029D0BE /* Vacation.app */,
+				CEE23B322C4B0E0E0029D0BE /* VacationTests.xctest */,
+				CEE23B3C2C4B0E0E0029D0BE /* VacationUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CEE23B242C4B0E0C0029D0BE /* Vacation */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */,
+				CEE23B532C4B22550029D0BE /* MainView.swift */,
+				CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */,
+				CEE23B592C4B32EB0029D0BE /* VacationView */,
+				CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */,
+				CEE23B2B2C4B0E0E0029D0BE /* Preview Content */,
+			);
+			path = Vacation;
+			sourceTree = "<group>";
+		};
+		CEE23B2B2C4B0E0E0029D0BE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B2C2C4B0E0E0029D0BE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CEE23B352C4B0E0E0029D0BE /* VacationTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B362C4B0E0E0029D0BE /* VacationTests.swift */,
+			);
+			path = VacationTests;
+			sourceTree = "<group>";
+		};
+		CEE23B3F2C4B0E0E0029D0BE /* VacationUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B402C4B0E0E0029D0BE /* VacationUITests.swift */,
+				CEE23B422C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift */,
+			);
+			path = VacationUITests;
+			sourceTree = "<group>";
+		};
+		CEE23B592C4B32EB0029D0BE /* VacationView */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
+				CEE23B552C4B26360029D0BE /* Vacation.swift */,
+				CEE23B5A2C4B32FC0029D0BE /* CalendarView */,
+			);
+			path = VacationView;
+			sourceTree = "<group>";
+		};
+		CEE23B5A2C4B32FC0029D0BE /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B4F2C4B18DE0029D0BE /* CalendarExtentionView.swift */,
+				CEE23B272C4B0E0C0029D0BE /* CalendarView.swift */,
+			);
+			path = CalendarView;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CEE23B212C4B0E0C0029D0BE /* Vacation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE23B462C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "Vacation" */;
+			buildPhases = (
+				CEE23B1E2C4B0E0C0029D0BE /* Sources */,
+				CEE23B1F2C4B0E0C0029D0BE /* Frameworks */,
+				CEE23B202C4B0E0C0029D0BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Vacation;
+			productName = Vacation;
+			productReference = CEE23B222C4B0E0C0029D0BE /* Vacation.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CEE23B312C4B0E0E0029D0BE /* VacationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE23B492C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "VacationTests" */;
+			buildPhases = (
+				CEE23B2E2C4B0E0E0029D0BE /* Sources */,
+				CEE23B2F2C4B0E0E0029D0BE /* Frameworks */,
+				CEE23B302C4B0E0E0029D0BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEE23B342C4B0E0E0029D0BE /* PBXTargetDependency */,
+			);
+			name = VacationTests;
+			productName = VacationTests;
+			productReference = CEE23B322C4B0E0E0029D0BE /* VacationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CEE23B3B2C4B0E0E0029D0BE /* VacationUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEE23B4C2C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "VacationUITests" */;
+			buildPhases = (
+				CEE23B382C4B0E0E0029D0BE /* Sources */,
+				CEE23B392C4B0E0E0029D0BE /* Frameworks */,
+				CEE23B3A2C4B0E0E0029D0BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEE23B3E2C4B0E0E0029D0BE /* PBXTargetDependency */,
+			);
+			name = VacationUITests;
+			productName = VacationUITests;
+			productReference = CEE23B3C2C4B0E0E0029D0BE /* VacationUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CEE23B1A2C4B0E0C0029D0BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1540;
+				LastUpgradeCheck = 1540;
+				TargetAttributes = {
+					CEE23B212C4B0E0C0029D0BE = {
+						CreatedOnToolsVersion = 15.4;
+					};
+					CEE23B312C4B0E0E0029D0BE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = CEE23B212C4B0E0C0029D0BE;
+					};
+					CEE23B3B2C4B0E0E0029D0BE = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = CEE23B212C4B0E0C0029D0BE;
+					};
+				};
+			};
+			buildConfigurationList = CEE23B1D2C4B0E0C0029D0BE /* Build configuration list for PBXProject "Vacation" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CEE23B192C4B0E0C0029D0BE;
+			productRefGroup = CEE23B232C4B0E0C0029D0BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CEE23B212C4B0E0C0029D0BE /* Vacation */,
+				CEE23B312C4B0E0E0029D0BE /* VacationTests */,
+				CEE23B3B2C4B0E0E0029D0BE /* VacationUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CEE23B202C4B0E0C0029D0BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE23B2D2C4B0E0E0029D0BE /* Preview Assets.xcassets in Resources */,
+				CEE23B2A2C4B0E0E0029D0BE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B302C4B0E0E0029D0BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B3A2C4B0E0E0029D0BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CEE23B1E2C4B0E0C0029D0BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE23B582C4B2A4B0029D0BE /* CreateDestionationView.swift in Sources */,
+				CEE23B282C4B0E0C0029D0BE /* CalendarView.swift in Sources */,
+				CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */,
+				CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */,
+				CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */,
+				CEE23B542C4B22550029D0BE /* MainView.swift in Sources */,
+				CEE23B502C4B18DE0029D0BE /* CalendarExtentionView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B2E2C4B0E0E0029D0BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE23B372C4B0E0E0029D0BE /* VacationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEE23B382C4B0E0E0029D0BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE23B432C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift in Sources */,
+				CEE23B412C4B0E0E0029D0BE /* VacationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CEE23B342C4B0E0E0029D0BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEE23B212C4B0E0C0029D0BE /* Vacation */;
+			targetProxy = CEE23B332C4B0E0E0029D0BE /* PBXContainerItemProxy */;
+		};
+		CEE23B3E2C4B0E0E0029D0BE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEE23B212C4B0E0C0029D0BE /* Vacation */;
+			targetProxy = CEE23B3D2C4B0E0E0029D0BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CEE23B442C4B0E0E0029D0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CEE23B452C4B0E0E0029D0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CEE23B472C4B0E0E0029D0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Vacation/Preview Content\"";
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.Vacation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CEE23B482C4B0E0E0029D0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Vacation/Preview Content\"";
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.Vacation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		CEE23B4A2C4B0E0E0029D0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.VacationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vacation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vacation";
+			};
+			name = Debug;
+		};
+		CEE23B4B2C4B0E0E0029D0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.VacationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vacation.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Vacation";
+			};
+			name = Release;
+		};
+		CEE23B4D2C4B0E0E0029D0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.VacationUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Vacation;
+			};
+			name = Debug;
+		};
+		CEE23B4E2C4B0E0E0029D0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 522V7NC84T;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = TA.VacationUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Vacation;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CEE23B1D2C4B0E0C0029D0BE /* Build configuration list for PBXProject "Vacation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE23B442C4B0E0E0029D0BE /* Debug */,
+				CEE23B452C4B0E0E0029D0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEE23B462C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "Vacation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE23B472C4B0E0E0029D0BE /* Debug */,
+				CEE23B482C4B0E0E0029D0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEE23B492C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "VacationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE23B4A2C4B0E0E0029D0BE /* Debug */,
+				CEE23B4B2C4B0E0E0029D0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEE23B4C2C4B0E0E0029D0BE /* Build configuration list for PBXNativeTarget "VacationUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEE23B4D2C4B0E0E0029D0BE /* Debug */,
+				CEE23B4E2C4B0E0E0029D0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CEE23B1A2C4B0E0C0029D0BE /* Project object */;
+}
