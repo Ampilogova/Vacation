@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A572C4C91D0006CFC1F /* SettingsView.swift */; };
+		CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A592C4C9F2E006CFC1F /* VacationTime.swift */; };
 		CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */; };
 		CEE23B282C4B0E0C0029D0BE /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B272C4B0E0C0029D0BE /* CalendarView.swift */; };
 		CEE23B2A2C4B0E0E0029D0BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */; };
@@ -16,7 +18,6 @@
 		CEE23B432C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B422C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift */; };
 		CEE23B502C4B18DE0029D0BE /* CalendarExtentionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B4F2C4B18DE0029D0BE /* CalendarExtentionView.swift */; };
 		CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */; };
-		CEE23B542C4B22550029D0BE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B532C4B22550029D0BE /* MainView.swift */; };
 		CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B552C4B26360029D0BE /* Vacation.swift */; };
 		CEE23B582C4B2A4B0029D0BE /* CreateDestionationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE743A572C4C91D0006CFC1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CE743A592C4C9F2E006CFC1F /* VacationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationTime.swift; sourceTree = "<group>"; };
 		CEE23B222C4B0E0C0029D0BE /* Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vacation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationApp.swift; sourceTree = "<group>"; };
 		CEE23B272C4B0E0C0029D0BE /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -51,7 +54,6 @@
 		CEE23B422C4B0E0E0029D0BE /* VacationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		CEE23B4F2C4B18DE0029D0BE /* CalendarExtentionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarExtentionView.swift; sourceTree = "<group>"; };
 		CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationDatesView.swift; sourceTree = "<group>"; };
-		CEE23B532C4B22550029D0BE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CEE23B552C4B26360029D0BE /* Vacation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vacation.swift; sourceTree = "<group>"; };
 		CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDestionationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */,
-				CEE23B532C4B22550029D0BE /* MainView.swift */,
 				CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */,
 				CEE23B592C4B32EB0029D0BE /* VacationView */,
 				CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */,
@@ -143,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
+				CE743A592C4C9F2E006CFC1F /* VacationTime.swift */,
+				CE743A572C4C91D0006CFC1F /* SettingsView.swift */,
 				CEE23B552C4B26360029D0BE /* Vacation.swift */,
 				CEE23B5A2C4B32FC0029D0BE /* CalendarView */,
 			);
@@ -289,11 +292,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE23B582C4B2A4B0029D0BE /* CreateDestionationView.swift in Sources */,
+				CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */,
+				CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */,
 				CEE23B282C4B0E0C0029D0BE /* CalendarView.swift in Sources */,
 				CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */,
 				CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */,
 				CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */,
-				CEE23B542C4B22550029D0BE /* MainView.swift in Sources */,
 				CEE23B502C4B18DE0029D0BE /* CalendarExtentionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

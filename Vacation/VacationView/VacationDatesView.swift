@@ -10,14 +10,17 @@ import SwiftData
 
 struct VacationDatesView: View {
     
-    private var vacationHours = 62
+//    private var vacationHours = 62
     private let workHours = 4
     
     @State private var destination = ""
-    @State private var showVacation = false
-    @State private var dates: Set<DateComponents> = []
-    @State private var newDate = Date.now
+    @State private var showCreateVacation = false
+    @State private var showCreateSettings = false
+    
+    @AppStorage("vacationHours") private var vacationHours: Int = 0
+    @AppStorage("vacationMinutes") private var vacationMinutes: Int = 0
     @Query(sort: \Vacation.destionation) private var vacations: [Vacation]
+    
     @Environment(\.modelContext) var modelContext
     
     var body: some View {
@@ -36,14 +39,24 @@ struct VacationDatesView: View {
                     .onDelete(perform: delete)
                 }
             }
-//            .navigationTitle("Planned vacations")
-            .navigationBarItems(trailing: Button(action: {
-                showVacation = true
-            }, label: {
-                Image(systemName: "plus")
-            }))
-            .popover(isPresented: $showVacation) {
+            .navigationBarItems(trailing:
+                                    HStack {
+                Button(action: {
+                    showCreateVacation = true
+                }, label: {
+                    Image(systemName: "plus")
+                })
+                Button(action: {
+                    showCreateSettings = true
+                }, label: {
+                    Image(systemName: "gear")
+                })
+            })
+            .popover(isPresented: $showCreateVacation) {
                 CreateDestinationView()
+            }
+            .popover(isPresented: $showCreateSettings) {
+                SettingsView()
             }
             .background(.bar)
         }
@@ -67,5 +80,12 @@ struct VacationDatesView: View {
         } catch {
             print("Error deleting chat: \(error)")
         }
+    }
+    
+    private func countFutureVacationHours(vacationTime: VacationTime) -> Int {
+//        let hours = vacationTime.hours
+//        let minutes = vacationTime.minutes
+        
+        return 1
     }
 }
