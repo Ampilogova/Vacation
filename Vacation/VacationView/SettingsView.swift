@@ -16,12 +16,10 @@ struct SettingsView: View {
     
     var body: some View {
         
-        HStack {
-            
+        VStack {
             TextField("Hours", text: $hours)
                 .textFieldStyle(.roundedBorder)
                 .padding()
-            Spacer()
             TextField("Minute", text: $minute)
                 .textFieldStyle(.roundedBorder)
                 .padding()

@@ -12,12 +12,12 @@ import SwiftData
 class Vacation: ObservableObject, Identifiable {
     var id = UUID()
     var destionation: String
-    var days: Int
+    var dates: Set<DateComponents>
     
-    init(id: UUID = UUID(), destionation: String, days: Int) {
+    init(id: UUID = UUID(), destionation: String, dates: Set<DateComponents>) {
         self.id = id
         self.destionation = destionation
-        self.days = days
+        self.dates = dates
     }
 }
 

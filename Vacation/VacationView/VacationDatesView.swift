@@ -10,9 +10,8 @@ import SwiftData
 
 struct VacationDatesView: View {
     
-//    private var vacationHours = 62
     private let workHours = 4
-    
+    @State private var vacationBalance = 0
     @State private var destination = ""
     @State private var showCreateVacation = false
     @State private var showCreateSettings = false
@@ -27,17 +26,24 @@ struct VacationDatesView: View {
         NavigationView {
             VStack(alignment: .center) {
                 Text("Current balance: \(vacationHours / workHours) days")
-                Text("Balance after planned vacation: \(vacationBalance(vacationHour: vacations)) days")
+                Text("Balance after planned vacation: \(vacationHours / workHours - vacationBalance) days")
                 
                 List {
                     ForEach(vacations) { vacation in
                         HStack {
                             Text(vacation.destionation)
-                            Text(String(vacation.days) + " days")
+                                .font(Font.headline.bold())
+                            Spacer()
+                            Text(convertDateComponents(dates: vacation.dates))
+                            Spacer()
+                            Text(String(countWorkingDays(dates: vacation.dates)) + " days")
                         }
                     }
                     .onDelete(perform: delete)
                 }
+            }
+            .onChange(of: vacations) {
+                vacationBalance = calculateVacationBalance()
             }
             .navigationBarItems(trailing:
                                     HStack {
@@ -58,16 +64,11 @@ struct VacationDatesView: View {
             .popover(isPresented: $showCreateSettings) {
                 SettingsView()
             }
+            .onAppear {
+                  vacationBalance = calculateVacationBalance()
+              }
             .background(.bar)
         }
-    }
-    
-    func vacationBalance(vacationHour: [Vacation]) -> Int {
-        var days = 0
-        for vacaion in vacations {
-            days += vacaion.days
-        }
-        return vacationHours / workHours - days
     }
     
     private func delete(at offsets: IndexSet) {
@@ -82,10 +83,83 @@ struct VacationDatesView: View {
         }
     }
     
-    private func countFutureVacationHours(vacationTime: VacationTime) -> Int {
-//        let hours = vacationTime.hours
-//        let minutes = vacationTime.minutes
+    private func countFutureVacationHours(vacationHours: Int, vacationMinutes: Int) -> Int {
         
         return 1
+    }
+    
+    private func convertDateComponents(dates: Set<DateComponents>) -> String {
+        var result = ""
+        let array = dates
+        let calendar = Calendar.current
+        let dates = array.compactMap { calendar.date(from: $0 )}
+        let sortedDates = dates.sorted(by: <).compactMap { calendar.dateComponents([.month, .day, .year], from: $0)}
+        if let firstdDate = sortedDates.first, let lastDate =  sortedDates.last {
+            result = convertToString(date: firstdDate) + " - " + convertToString(date: lastDate)
+        }
+        return result
+    }
+    
+    private func convertToString(date: DateComponents) -> String {
+        var dateString = ""
+        let calendar = Calendar.current
+        if let date = calendar.date(from: date) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.YY"
+            
+            dateString = dateFormatter.string(from: date)
+        }
+        return dateString
+    }
+    
+    private func countWorkingDays(dates: Set<DateComponents>) -> Int {
+        var count = 0
+        let wednesday = 4
+        let thursday = 5
+        for date in dates {
+            if let weekday = date.weekday {
+                if weekday != wednesday && weekday != thursday {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
+    
+    func incrementMinutesIfNecessary() {
+        let currentDate = Date()
+        let wednesday = 4
+        let thursday = 5
+        let today = Calendar.current.dateComponents([.weekday], from: currentDate)
+        guard let weekday = today.weekday else { return }
+
+        if weekday != wednesday && weekday != thursday && !isVacationDay(today) {
+            vacationMinutes += 34
+
+            if vacationMinutes >= 60 {
+                vacationHours += vacationMinutes / 60
+                vacationMinutes %= 60
+            }
+        }
+    }
+    
+    func isVacationDay(_ dateComponents: DateComponents) -> Bool {
+        for vacation in vacations {
+            if vacation.dates.contains(where: { date in
+                date.day == dateComponents.day &&
+                date.month == dateComponents.month &&
+                date.year == dateComponents.year
+            })  {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    private func calculateVacationBalance() -> Int {
+        return vacations.reduce(0) { total, vacation in
+            total + countWorkingDays(dates: vacation.dates)
+        }
     }
 }
