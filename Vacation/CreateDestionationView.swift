@@ -28,45 +28,47 @@ struct CreateDestinationView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Selected Dates: \(dates.count)")
-                    .font(.headline)
-                Spacer()
-                TextField("Destination", text: $destination)
-                    .textFieldStyle(.roundedBorder)
-                MultiDatePicker("Dates Available", selection: $dates)
-                    .frame(height: 500)
+            ScrollView {
+                VStack {
+                    Text("Selected Dates: \(dates.count)")
+                        .font(.headline)
+                    Spacer()
+                    TextField("Destination", text: $destination)
+                        .textFieldStyle(.roundedBorder)
+                    MultiDatePicker("Dates Available", selection: $dates)
+                        .frame(height: 500)
+                }
+                
+                .padding()
+                .navigationBarItems(trailing: Button(action: {
+                    isSheetPresented = true
+                    isDisabled = true
+                    let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
+                    modelContext.insert(newVacation)
+                    destination = ""
+                    dismiss()
+                }, label: {
+                    Text("Done")
+                        .foregroundColor(destination.isEmpty ? Color.gray : Color.blue)
+                        .disabled(isDisabled)
+                }))
             }
-            
-            .padding()
-            .navigationBarItems(trailing: Button(action: {
-                isSheetPresented = true
-                isDisabled = true
-                let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
-                modelContext.insert(newVacation)
-                destination = ""
-                dismiss()
-            }, label: {
-                Text("Done")
-                    .foregroundColor(destination.isEmpty ? Color.gray : Color.blue)
-                    .disabled(isDisabled)
-            }))
+            .bold()
         }
-        .bold()
     }
     private func datesWithWeekdays() -> Set<DateComponents> {
-         let calendar = Calendar.current
-         var updatedDates: Set<DateComponents> = []
-
-         for dateComponent in dates {
-             if let date = calendar.date(from: dateComponent) {
-                 var newComponent = dateComponent
-                 newComponent.weekday = calendar.component(.weekday, from: date)
-                 updatedDates.insert(newComponent)
-             }
-         }
-
-         return updatedDates
-     }
+        let calendar = Calendar.current
+        var updatedDates: Set<DateComponents> = []
+        
+        for dateComponent in dates {
+            if let date = calendar.date(from: dateComponent) {
+                var newComponent = dateComponent
+                newComponent.weekday = calendar.component(.weekday, from: date)
+                updatedDates.insert(newComponent)
+            }
+        }
+        
+        return updatedDates
+    }
 }
 

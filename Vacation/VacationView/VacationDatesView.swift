@@ -11,16 +11,17 @@ import SwiftData
 struct VacationDatesView: View {
     
     private let workHours = 4
+    
     @State private var vacationBalance = 0
     @State private var destination = ""
     @State private var showCreateVacation = false
     @State private var showCreateSettings = false
-    
+    @AppStorage("startDate") private var startDateData: Data = Data()
     @AppStorage("vacationHours") private var vacationHours: Int = 0
     @AppStorage("vacationMinutes") private var vacationMinutes: Int = 0
     @Query(sort: \Vacation.destionation) private var vacations: [Vacation]
-    
     @Environment(\.modelContext) var modelContext
+    
     
     var body: some View {
         NavigationView {
@@ -65,8 +66,9 @@ struct VacationDatesView: View {
                 SettingsView()
             }
             .onAppear {
-                  vacationBalance = calculateVacationBalance()
-              }
+                vacationBalance = calculateVacationBalance()
+                countFutureVacationHours()
+            }
             .background(.bar)
         }
     }
@@ -81,11 +83,6 @@ struct VacationDatesView: View {
         } catch {
             print("Error deleting chat: \(error)")
         }
-    }
-    
-    private func countFutureVacationHours(vacationHours: Int, vacationMinutes: Int) -> Int {
-        
-        return 1
     }
     
     private func convertDateComponents(dates: Set<DateComponents>) -> String {
@@ -126,21 +123,43 @@ struct VacationDatesView: View {
         return count
     }
     
-    func incrementMinutesIfNecessary() {
+    private var startDate: Date {
+           get {
+               guard let decodedDate = try? JSONDecoder().decode(Date.self, from: startDateData) else {
+                   return Date()
+               }
+               return decodedDate
+           }
+           set {
+               guard let encodedDate = try? JSONEncoder().encode(newValue) else {
+                   return
+               }
+               startDateData = encodedDate
+           }
+       }
+    
+    private func countFutureVacationHours() {
         let currentDate = Date()
-        let wednesday = 4
-        let thursday = 5
+        let calendar = Calendar.current
+        let daysDifference = calendar.dateComponents([.day], from: startDate, to: currentDate).day ?? 0
         let today = Calendar.current.dateComponents([.weekday], from: currentDate)
-        guard let weekday = today.weekday else { return }
-
-        if weekday != wednesday && weekday != thursday && !isVacationDay(today) {
-            vacationMinutes += 34
-
-            if vacationMinutes >= 60 {
-                vacationHours += vacationMinutes / 60
-                vacationMinutes %= 60
+        
+        for i in 0..<daysDifference {
+            let dateToCheck = calendar.date(byAdding: .day, value: i, to: startDate) ?? startDate
+            let weekday = calendar.component(.weekday, from: dateToCheck)
+            let wednesday = 4
+            let thursday = 5
+            
+            if weekday != wednesday && weekday != thursday && !isVacationDay(today) {
+                vacationMinutes += 34
+                
+                if vacationMinutes >= 60 {
+                    vacationHours += vacationMinutes / 60
+                    vacationMinutes %= 60
+                }
             }
         }
+        startDateData = try! JSONEncoder().encode(currentDate)
     }
     
     func isVacationDay(_ dateComponents: DateComponents) -> Bool {
