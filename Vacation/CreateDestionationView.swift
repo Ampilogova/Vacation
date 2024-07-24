@@ -8,12 +8,25 @@
 import SwiftUI
 
 struct CreateDestinationView: View {
+    var vacation: Vacation?
     @State private var isDisabled = true
     @State private var isSheetPresented = false
     @State private var destination = ""
     @State private var dates: Set<DateComponents> = []
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) var modelContext
+    
+    private var editorTitle: String {
+        vacation == nil ? "Add" : "Edit"
+    }
+    
+    init(vacation: Vacation? = nil) {
+        self.vacation = vacation
+        if let vacation = vacation {
+            _destination = State(initialValue: vacation.destination)
+            _dates = State(initialValue: vacation.dates)
+        }
+    }
     
     let dateRange: ClosedRange<Date>? = {
         let calendar = Calendar.current
@@ -38,24 +51,27 @@ struct CreateDestinationView: View {
                     MultiDatePicker("Dates Available", selection: $dates)
                         .frame(height: 500)
                 }
-                
                 .padding()
-                .navigationBarItems(trailing: Button(action: {
-                    isSheetPresented = true
-                    isDisabled = true
-                    let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
-                    modelContext.insert(newVacation)
-                    destination = ""
-                    dismiss()
-                }, label: {
-                    Text("Done")
-                        .foregroundColor(destination.isEmpty ? Color.gray : Color.blue)
-                        .disabled(isDisabled)
+                .navigationBarItems(trailing: Button(action: saveVacation, label:  {
+                    Text(editorTitle)
                 }))
             }
             .bold()
         }
     }
+    
+    private func saveVacation() {
+         if let existingVacation = vacation {
+             existingVacation.destination = destination
+             existingVacation.dates = dates
+         } else {
+             let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
+             modelContext.insert(newVacation)
+         }
+         
+         dismiss()
+     }
+
     private func datesWithWeekdays() -> Set<DateComponents> {
         let calendar = Calendar.current
         var updatedDates: Set<DateComponents> = []
@@ -67,7 +83,6 @@ struct CreateDestinationView: View {
                 updatedDates.insert(newComponent)
             }
         }
-        
         return updatedDates
     }
 }

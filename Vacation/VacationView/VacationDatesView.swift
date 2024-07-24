@@ -19,10 +19,9 @@ struct VacationDatesView: View {
     @AppStorage("startDate") private var startDateData: Data = Data()
     @AppStorage("vacationHours") private var vacationHours: Int = 0
     @AppStorage("vacationMinutes") private var vacationMinutes: Int = 0
-    @Query(sort: \Vacation.destionation) private var vacations: [Vacation]
+    @Query(sort: \Vacation.destination) private var vacations: [Vacation]
     @Environment(\.modelContext) var modelContext
-    
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -31,13 +30,15 @@ struct VacationDatesView: View {
                 
                 List {
                     ForEach(vacations) { vacation in
-                        HStack {
-                            Text(vacation.destionation)
-                                .font(Font.headline.bold())
-                            Spacer()
-                            Text(convertDateComponents(dates: vacation.dates))
-                            Spacer()
-                            Text(String(countWorkingDays(dates: vacation.dates)) + " days")
+                        NavigationLink(destination: CreateDestinationView(vacation: vacation)) {
+                            HStack {
+                                Text(vacation.destination)
+                                    .font(Font.headline.bold())
+                                Spacer()
+                                Text(convertDateComponents(dates: vacation.dates))
+                                Spacer()
+                                Text(String(countWorkingDays(dates: vacation.dates)) + " days")
+                            }
                         }
                     }
                     .onDelete(perform: delete)
@@ -49,6 +50,7 @@ struct VacationDatesView: View {
             .navigationBarItems(trailing:
                                     HStack {
                 Button(action: {
+                    
                     showCreateVacation = true
                 }, label: {
                     Image(systemName: "plus")
@@ -59,11 +61,11 @@ struct VacationDatesView: View {
                     Image(systemName: "gear")
                 })
             })
-            .popover(isPresented: $showCreateVacation) {
-                CreateDestinationView()
-            }
             .popover(isPresented: $showCreateSettings) {
                 SettingsView()
+            }
+            .popover(isPresented: $showCreateVacation) {
+                CreateDestinationView()
             }
             .onAppear {
                 vacationBalance = calculateVacationBalance()
