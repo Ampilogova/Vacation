@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+@MainActor
 struct SettingsView: View {
+    @State private var viewModel = VacationDatesViewModel()
     @State private var hours: String = ""
     @State private var minute: String = ""
-    @AppStorage("vacationHours") private var vacationHours: Int = 0
+//    @AppStorage("vacationHours") private var vacationHours: Int = 0
     @AppStorage("vacationMinutes") private var vacationMinutes: Int = 0
     @Environment(\.dismiss) private var dismiss
     
@@ -28,8 +30,10 @@ struct SettingsView: View {
             VStack {
                 Button("Save") {
                     if let hoursVacation = Int(hours), let minuteVacation = Int(minute) {
-                        vacationHours = hoursVacation
-                        vacationMinutes = minuteVacation
+                        viewModel.setupStartDate(startDate: Date.now.timeIntervalSince1970)
+                        let min = viewModel.convertToMinutes(hours: hoursVacation, minutes: minuteVacation)
+//                        vacationHours = hoursVacation
+                        vacationMinutes = min
                         dismiss()
                     }
                 }

@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+@MainActor
 struct CreateDestinationView: View {
+    var viewModel = VacationDatesViewModel()
     var vacation: Vacation?
     @State private var isDisabled = true
     @State private var isSheetPresented = false
@@ -43,8 +45,11 @@ struct CreateDestinationView: View {
         NavigationView {
             ScrollView {
                 VStack {
-                    Text("Selected Dates: \(dates.count)")
-                        .font(.headline)
+                    if let dateComponent = dates.first,
+                       let date = Calendar.current.date(from: dateComponent) {
+                        Text("Selected Dates: \(viewModel.checkAvailability(futureDay: date))")
+                            .font(.headline)
+                    }
                     Spacer()
                     TextField("Destination", text: $destination)
                         .textFieldStyle(.roundedBorder)
@@ -52,7 +57,7 @@ struct CreateDestinationView: View {
                         .frame(height: 500)
                 }
                 .padding()
-                .navigationBarItems(trailing: Button(action: saveVacation, label:  {
+                .navigationBarItems(trailing: Button(action: saveVacation, label: {
                     Text(editorTitle)
                 }))
             }

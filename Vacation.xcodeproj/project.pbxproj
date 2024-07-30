@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A572C4C91D0006CFC1F /* SettingsView.swift */; };
 		CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A592C4C9F2E006CFC1F /* VacationTime.swift */; };
+		CEC522DD2C56E7F400FF24EE /* VacationDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */; };
 		CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */; };
 		CEE23B2A2C4B0E0E0029D0BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */; };
 		CEE23B2D2C4B0E0E0029D0BE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE23B2C2C4B0E0E0029D0BE /* Preview Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		CE743A572C4C91D0006CFC1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CE743A592C4C9F2E006CFC1F /* VacationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationTime.swift; sourceTree = "<group>"; };
+		CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationDatesViewModel.swift; sourceTree = "<group>"; };
 		CEE23B222C4B0E0C0029D0BE /* Vacation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vacation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationApp.swift; sourceTree = "<group>"; };
 		CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
+				CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */,
 				CE743A592C4C9F2E006CFC1F /* VacationTime.swift */,
 				CE743A572C4C91D0006CFC1F /* SettingsView.swift */,
 				CEE23B552C4B26360029D0BE /* Vacation.swift */,
@@ -281,6 +284,7 @@
 				CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */,
 				CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */,
 				CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */,
+				CEC522DD2C56E7F400FF24EE /* VacationDatesViewModel.swift in Sources */,
 				CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */,
 				CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */,
 			);
