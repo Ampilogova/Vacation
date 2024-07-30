@@ -47,7 +47,7 @@ struct CreateDestinationView: View {
                 VStack {
                     if let dateComponent = dates.first,
                        let date = Calendar.current.date(from: dateComponent) {
-                        Text("Selected Dates: \(viewModel.checkAvailability(futureDay: date))")
+                        Text("Possibly available days: \(viewModel.checkAvailability(futureDay: date))")
                             .font(.headline)
                     }
                     Spacer()

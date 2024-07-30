@@ -9,11 +9,9 @@ import Foundation
 import SwiftData
 
 struct VacationTime: Codable {
-    var hours: Int
-    var minutes: Int
+    var minutes: Double
     
-    init(hours: Int, minutes: Int) {
-        self.hours = hours
+    init(minutes: Double) {
         self.minutes = minutes
     }
 }

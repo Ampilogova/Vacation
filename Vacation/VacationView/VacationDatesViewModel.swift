@@ -56,6 +56,7 @@ class VacationDatesViewModel {
         vacationBalance = vacations.reduce(0) { total, vacation in
             total + countWorkingDays(dates: vacation.dates)
        }
+
         return  vacationMinutes / 60 / workHours - vacationBalance
    }
 
@@ -112,18 +113,15 @@ class VacationDatesViewModel {
             let wednesday = 4
             let thursday = 5
             
-            if weekday != wednesday && weekday != thursday {
-                if isVacationDay(components) {
-                    result -= 240
-                } else {
-                    result += 34
-                }
+            if weekday != wednesday && weekday != thursday && !isVacationDay(components) {
+                result += 34
             }
         }
-        return result / 60 / 4
+        
+        return result / 60 / workHours - 16
     }
     
-     func addVacationHours() {
+    func addVacationHours() {
         let calendar = Calendar.current
         let startDate = Date(timeIntervalSince1970: startDateData ?? Date.now.timeIntervalSince1970)
         guard !calendar.isDateInToday(startDate) else {
