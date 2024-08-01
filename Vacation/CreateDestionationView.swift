@@ -42,27 +42,25 @@ struct CreateDestinationView: View {
     }()
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack {
-                    if let dateComponent = dates.first,
-                       let date = Calendar.current.date(from: dateComponent) {
-                        Text("Possibly available days: \(viewModel.checkAvailability(futureDay: date))")
-                            .font(.headline)
-                    }
-                    Spacer()
-                    TextField("Destination", text: $destination)
-                        .textFieldStyle(.roundedBorder)
-                    MultiDatePicker("Dates Available", selection: $dates)
-                        .frame(height: 500)
+        ScrollView {
+            VStack {
+                if let dateComponent = dates.first,
+                   let date = Calendar.current.date(from: dateComponent) {
+                    Text("Possibly available days: \(viewModel.checkAvailability(futureDay: date))")
+                        .font(.headline)
                 }
-                .padding()
-                .navigationBarItems(trailing: Button(action: saveVacation, label: {
-                    Text(editorTitle)
-                }))
+                Spacer()
+                TextField("Destination", text: $destination)
+                    .textFieldStyle(.roundedBorder)
+                MultiDatePicker("Dates Available", selection: $dates)
+                    .frame(height: 500)
             }
-            .bold()
+            .padding()
+            .navigationBarItems(trailing: Button(action: saveVacation, label: {
+                Text(editorTitle)
+            }))
         }
+        .bold()
     }
     
     private func saveVacation() {
@@ -73,7 +71,6 @@ struct CreateDestinationView: View {
              let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
              modelContext.insert(newVacation)
          }
-         
          dismiss()
      }
 

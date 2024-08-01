@@ -11,16 +11,18 @@ import SwiftData
 @MainActor
 struct VacationDatesView: View {
     @State private var viewModel = VacationDatesViewModel()
+    @Environment(\.dismiss) private var dismiss
     
     var vacationList: some View {
         List {
             ForEach(viewModel.vacations) { vacation in
                 NavigationLink(destination: CreateDestinationView(vacation: vacation)) {
                     HStack {
-                        Text(vacation.destination)
-                            .font(Font.headline.bold())
-                        Spacer()
-                        Text(viewModel.convertDateComponents(dates: vacation.dates))
+                        VStack(alignment: .leading) {
+                            Text(vacation.destination)
+                                .font(Font.headline.bold())
+                            Text(viewModel.convertDateComponents(dates: vacation.dates)).foregroundStyle(.secondary)
+                        }
                         Spacer()
                         Text(String(viewModel.countWorkingDays(dates: vacation.dates)) + " days")
                     }
@@ -64,21 +66,27 @@ struct VacationDatesView: View {
                 SettingsView()
             }
             .popover(isPresented:  $viewModel.showCreateVacation) {
-                //Navigation
-                CreateDestinationView()
-                    .onDisappear {
-                        viewModel.fetchData()
-                    }
+                NavigationView {
+                    CreateDestinationView()
+                        .onDisappear {
+                            viewModel.fetchData()
+                            viewModel.sortVacationList()
+                        }
+                }
             }
             .onAppear {
                 viewModel.addVacationHours()
+                viewModel.updateVacationMinutes()
                 viewModel.vacationBalance = viewModel.balanceVacationDates()
+                viewModel.sortVacationList()
             }
             
             .background(.bar)
             .alert("Enter hours", isPresented: $viewModel.showAlert) {
                 TextField("Minutes", text: $viewModel.vto)
-                //cancel
+                Button("Cancel", action:  {
+                    dismiss()
+                })
                 Button("Add", action: viewModel.submit)
             }
         }
