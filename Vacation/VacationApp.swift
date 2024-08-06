@@ -18,7 +18,9 @@ struct VacationApp: App {
     }
 }
 
+// Move to separate file
 extension ModelContainer {
+    // Maybe rename to "default"
     static let shared: ModelContainer = {
         let schema = Schema([
             Vacation.self,
