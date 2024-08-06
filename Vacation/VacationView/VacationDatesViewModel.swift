@@ -10,26 +10,27 @@ import SwiftData
 
 @MainActor
 @Observable
+// add private where needed for properties and functions
 class VacationDatesViewModel {
-    let workHours = 4
+    let workHours = 4 // workingHoursPerDay
     var vacations: [Vacation] = []
-    var vacationBalance: Int = 0
+    var vacationBalance: Int = 0 // remove ": Int" same below for String and Bool
     var destination: String = ""
     var vto: String = ""
     var showCreateVacation: Bool = false
     var showCreateSettings: Bool = false
     var showAlert: Bool = false
     
-    var vacationMinutes: Int {
+    var vacationMinutes: Int { // maybe rename to vacationBalance and instead of Int use VacationTime struct (more on thea below)
         get {
-            return UserDefaults.standard.integer(forKey: "vacationMinutes")
+            return UserDefaults.standard.integer(forKey: "vacationMinutes") // I think you can use #function instead of "vacationMinutes"
         }
         set {
             UserDefaults.standard.setValue(newValue, forKey: "vacationMinutes")
         }
     }
     
-    var startDateData: TimeInterval?
+    var startDateData: TimeInterval? // I think you need to override setter and getter as above and maybe rename to lastUpdateDate
     
     func setupStartDate(startDate: TimeInterval) {
         startDateData = Date.now.timeIntervalSince1970
@@ -40,7 +41,7 @@ class VacationDatesViewModel {
         fetchData()
     }
     
-    func fetchData() {
+    func fetchData() { // maybe rename to updateVacations
         do {
             vacations = try ModelContainer.shared.mainContext.fetch(FetchDescriptor<Vacation>())
          } catch {
@@ -48,14 +49,15 @@ class VacationDatesViewModel {
          }
     }
     
-    func updateVacationMinutes() {
+    func updateVacationMinutes() { // rename to something like clean up past vacations if needed
         for vacation in vacations {
             for dateComponent in vacation.dates {
                 if let date = Calendar.current.date(from: dateComponent) {
                     if date < Date() {
                         vacationMinutes -= 240
-                        ModelContainer.shared.mainContext.delete(vacation)
+                        ModelContainer.shared.mainContext.delete(vacation) // looks like a bug. It will remove vacation on the first date of vacation. Do you want it to stay?
                     }
+                    // I think code below not requred anymore for swift data
                     do {
                         try ModelContainer.shared.mainContext.save()
                     } catch {
@@ -67,11 +69,11 @@ class VacationDatesViewModel {
     }
     
     
-    func totalVacationDays() -> Int {
+    func totalVacationDays() -> Int { // I think you need to create struct VacationTime which initialize with minutes like VacationTime(minutes: Int). Then you will be able to add computed property to it "var hors: Int { minutes / 60 / workHours }.
         return vacationMinutes / 60 / workHours
     }
     
-    func balanceVacationDates() -> Int {
+    func balanceVacationDates() -> Int { // rename to make it clear what this func is doing
         vacationBalance = vacations.reduce(0) { total, vacation in
             total + countWorkingDays(dates: vacation.dates)
        }
@@ -79,7 +81,8 @@ class VacationDatesViewModel {
         return  vacationMinutes / 60 / workHours - vacationBalance
    }
 
-    func sortVacationList() {
+    // if you will store startDate in the Vacation object then you will be able to get sorted vacations when you fetching it from context
+    func sortVacationList() { // seems like this function is unused
         vacations.sort { (vacation1, vacation2) -> Bool in
            
             let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
@@ -106,7 +109,8 @@ class VacationDatesViewModel {
         return count
     }
     
-    func checkAvailability(futureDay: Date) -> Int {
+    // rename to calculateVacatiobBalance(at date: Date) -> VacationTime
+    func checkAvailability(futureDay: Date) -> Int { // replace Int with VacationTime struct
         let calendar = Calendar.current
         let today = Date()
         let daysDifference = calendar.dateComponents([.day], from: today, to: futureDay).day ?? 0
@@ -130,7 +134,7 @@ class VacationDatesViewModel {
     }
     
 
-    func addVacationHours() {
+    func addVacationHours() { // maybe find better name
         let calendar = Calendar.current
         let startDate = Date(timeIntervalSince1970: startDateData ?? Date.now.timeIntervalSince1970)
         guard !calendar.isDateInToday(startDate) else {
@@ -170,9 +174,10 @@ class VacationDatesViewModel {
         let hour = 4.0 // price for 1 hours
         let num = (Double(vto) ?? 0.0) / 60.0
         vacationMinutes -= Int(hour * num)
-        vto = ""
+        vto = "" // why we need this?
     }
     
+    // unused?
     func convertToMinutes(hours: Int, minutes: Int) -> Int {
         return hours * 60 + minutes
     }
@@ -182,13 +187,16 @@ class VacationDatesViewModel {
             let vacation = vacations[index]
             ModelContainer.shared.mainContext.delete(vacation)
         }
+        // You may not need code below
         do {
             try ModelContainer.shared.mainContext.save()
         } catch {
             print("Error deleting chat: \(error)")
         }
+        // here you need to call fetchData() to make your list updated
     }
     
+    // unused?
     func convertDateComponents(dates: Set<DateComponents>) -> String {
        var result = ""
        let array = dates

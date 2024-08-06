@@ -29,7 +29,7 @@ struct SettingsView: View {
             VStack {
                 Button("Save") {
                     if let hoursVacation = Int(hours), let minuteVacation = Int(minute) {
-                        viewModel.setupStartDate(startDate: Date.now.timeIntervalSince1970)
+                        viewModel.setupStartDate(startDate: Date.now.timeIntervalSince1970) // you not supposed to use view model from another class
                         let min = viewModel.convertToMinutes(hours: hoursVacation, minutes: minuteVacation)
                         vacationMinutes = min
                         dismiss()
