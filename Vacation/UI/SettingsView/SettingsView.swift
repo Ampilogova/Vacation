@@ -9,32 +9,30 @@ import SwiftUI
 
 @MainActor
 struct SettingsView: View {
-    @State private var viewModel = VacationDatesViewModel()
-    @State private var hours: String = ""
-    @State private var minute: String = ""
-    @AppStorage("vacationMinutes") private var vacationMinutes: Int = 0
+    @State private var viewModel = SettingsViewModel()
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         
         VStack {
-            TextField("Hours", text: $hours)
+            TextField("Hours", text: $viewModel.hours)
                 .textFieldStyle(.roundedBorder)
                 .padding()
-            TextField("Minute", text: $minute)
+            TextField("Minute", text: $viewModel.minute)
                 .textFieldStyle(.roundedBorder)
                 .padding()
         }
         .safeAreaInset(edge: .bottom) {
             VStack {
-                Button("Save") {
-                    if let hoursVacation = Int(hours), let minuteVacation = Int(minute) {
+                Button("Save", action: {
+                    if let hoursVacation = Int($viewModel.hours.wrappedValue),
+                    let minuteVacation = Int($viewModel.minute.wrappedValue) {
                         viewModel.setupStartDate(startDate: Date.now.timeIntervalSince1970)
                         let min = viewModel.convertToMinutes(hours: hoursVacation, minutes: minuteVacation)
-                        vacationMinutes = min
+                        viewModel.vacationMinutes = min
                         dismiss()
                     }
-                }
+                })
             }
         }
     }

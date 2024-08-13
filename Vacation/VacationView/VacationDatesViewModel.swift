@@ -31,11 +31,6 @@ class VacationDatesViewModel {
     
     var startDateData: TimeInterval?
     
-    func setupStartDate(startDate: TimeInterval) {
-        startDateData = Date.now.timeIntervalSince1970
-        UserDefaults.standard.set(startDateData, forKey: "startDateKey")
-    }
-    
     init() {
         fetchData()
     }
@@ -173,10 +168,6 @@ class VacationDatesViewModel {
         vto = ""
     }
     
-    func convertToMinutes(hours: Int, minutes: Int) -> Int {
-        return hours * 60 + minutes
-    }
-    
     func delete(at offsets: IndexSet) {
         for index in offsets {
             let vacation = vacations[index]
@@ -213,3 +204,4 @@ class VacationDatesViewModel {
        return dateString
    }
 }
+

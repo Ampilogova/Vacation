@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE502E782C6462EF0054DFB5 /* CreateDestinationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE502E772C6462EF0054DFB5 /* CreateDestinationViewModel.swift */; };
+		CE502E7A2C6469810054DFB5 /* VacationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE502E792C6469810054DFB5 /* VacationService.swift */; };
+		CE502E7E2C6AD29C0054DFB5 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE502E7D2C6AD29C0054DFB5 /* ModelContainer.swift */; };
+		CE502E832C6AD3760054DFB5 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE502E822C6AD3760054DFB5 /* SettingsViewModel.swift */; };
 		CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A572C4C91D0006CFC1F /* SettingsView.swift */; };
 		CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE743A592C4C9F2E006CFC1F /* VacationTime.swift */; };
 		CEC522DD2C56E7F400FF24EE /* VacationDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */; };
@@ -39,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE502E772C6462EF0054DFB5 /* CreateDestinationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDestinationViewModel.swift; sourceTree = "<group>"; };
+		CE502E792C6469810054DFB5 /* VacationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationService.swift; sourceTree = "<group>"; };
+		CE502E7D2C6AD29C0054DFB5 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
+		CE502E822C6AD3760054DFB5 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		CE743A572C4C91D0006CFC1F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CE743A592C4C9F2E006CFC1F /* VacationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationTime.swift; sourceTree = "<group>"; };
 		CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacationDatesViewModel.swift; sourceTree = "<group>"; };
@@ -81,6 +89,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE502E7B2C6AD1DA0054DFB5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CE502E802C6AD3110054DFB5 /* SettingsView */,
+				CE502E7C2C6AD25A0054DFB5 /* CreateDestination */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CE502E7C2C6AD25A0054DFB5 /* CreateDestination */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */,
+				CE502E772C6462EF0054DFB5 /* CreateDestinationViewModel.swift */,
+			);
+			path = CreateDestination;
+			sourceTree = "<group>";
+		};
+		CE502E7F2C6AD2ED0054DFB5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE502E812C6AD3440054DFB5 /* VacationService */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE502E802C6AD3110054DFB5 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				CE743A572C4C91D0006CFC1F /* SettingsView.swift */,
+				CE502E822C6AD3760054DFB5 /* SettingsViewModel.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		CE502E812C6AD3440054DFB5 /* VacationService */ = {
+			isa = PBXGroup;
+			children = (
+				CE502E792C6469810054DFB5 /* VacationService.swift */,
+			);
+			path = VacationService;
+			sourceTree = "<group>";
+		};
 		CEE23B192C4B0E0C0029D0BE = {
 			isa = PBXGroup;
 			children = (
@@ -105,7 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				CEE23B252C4B0E0C0029D0BE /* VacationApp.swift */,
-				CEE23B572C4B2A4B0029D0BE /* CreateDestionationView.swift */,
+				CE502E7D2C6AD29C0054DFB5 /* ModelContainer.swift */,
+				CE502E7F2C6AD2ED0054DFB5 /* Core */,
+				CE502E7B2C6AD1DA0054DFB5 /* UI */,
 				CEE23B592C4B32EB0029D0BE /* VacationView */,
 				CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */,
 				CEE23B2B2C4B0E0E0029D0BE /* Preview Content */,
@@ -144,7 +197,6 @@
 				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
 				CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */,
 				CE743A592C4C9F2E006CFC1F /* VacationTime.swift */,
-				CE743A572C4C91D0006CFC1F /* SettingsView.swift */,
 				CEE23B552C4B26360029D0BE /* Vacation.swift */,
 			);
 			path = VacationView;
@@ -281,12 +333,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE23B582C4B2A4B0029D0BE /* CreateDestionationView.swift in Sources */,
+				CE502E7E2C6AD29C0054DFB5 /* ModelContainer.swift in Sources */,
 				CE743A5A2C4C9F2E006CFC1F /* VacationTime.swift in Sources */,
+				CE502E782C6462EF0054DFB5 /* CreateDestinationViewModel.swift in Sources */,
 				CE743A582C4C91D0006CFC1F /* SettingsView.swift in Sources */,
 				CEE23B522C4B219F0029D0BE /* VacationDatesView.swift in Sources */,
 				CEC522DD2C56E7F400FF24EE /* VacationDatesViewModel.swift in Sources */,
 				CEE23B562C4B26360029D0BE /* Vacation.swift in Sources */,
+				CE502E832C6AD3760054DFB5 /* SettingsViewModel.swift in Sources */,
 				CEE23B262C4B0E0C0029D0BE /* VacationApp.swift in Sources */,
+				CE502E7A2C6469810054DFB5 /* VacationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

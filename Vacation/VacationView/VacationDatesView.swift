@@ -10,13 +10,18 @@ import SwiftData
 
 @MainActor
 struct VacationDatesView: View {
+    let vacationService: VacationService
     @State private var viewModel = VacationDatesViewModel()
     @Environment(\.dismiss) private var dismiss
+    
+    init(vacationService: VacationService) {
+        self.vacationService = vacationService
+    }
     
     var vacationList: some View {
         List {
             ForEach(viewModel.vacations) { vacation in
-                NavigationLink(destination: CreateDestinationView(vacation: vacation)) {
+                NavigationLink(destination: CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: vacation, vacationService: vacationService))) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(vacation.destination)
@@ -67,9 +72,10 @@ struct VacationDatesView: View {
             }
             .popover(isPresented:  $viewModel.showCreateVacation) {
                 NavigationView {
-                    CreateDestinationView()
+                    CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: nil, vacationService: vacationService))
                         .onDisappear {
                             viewModel.fetchData()
+                            print(viewModel.vacations)
                             viewModel.sortVacationList()
                         }
                 }
