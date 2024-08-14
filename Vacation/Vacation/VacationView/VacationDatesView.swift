@@ -33,7 +33,7 @@ struct VacationDatesView: View {
                     }
                 }
             }
-            .onDelete(perform: viewModel.delete)
+            .onDelete(perform: viewModel.deleteVacation)
         }
     }
     
@@ -58,6 +58,8 @@ struct VacationDatesView: View {
                 Text("Current balance: \(viewModel.totalVacationDays()) days")
                 Text("Balance after planned vacation: \(viewModel.vacationBalance) days")
                 vacationList
+                Text(viewModel.convertToHoursMinutes())
+                    .foregroundColor(.gray)
             }
             .onChange(of: viewModel.vacations) {
                 viewModel.vacationBalance = viewModel.balanceVacationDates()
@@ -74,17 +76,14 @@ struct VacationDatesView: View {
                 NavigationView {
                     CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: nil, vacationService: vacationService))
                         .onDisappear {
-                            viewModel.fetchData()
+                            viewModel.updateVacations()
                             print(viewModel.vacations)
                             viewModel.sortVacationList()
                         }
                 }
             }
             .onAppear {
-                viewModel.addVacationHours()
-                viewModel.updateVacationMinutes()
-                viewModel.vacationBalance = viewModel.balanceVacationDates()
-                viewModel.sortVacationList()
+                viewModel.upDateData()
             }
             
             .background(.bar)

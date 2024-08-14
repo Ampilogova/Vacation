@@ -16,10 +16,18 @@ class SettingsViewModel {
     
     @AppStorage("vacationMinutes") var vacationMinutes: Int = 0
     
-    
     func setupStartDate(startDate: TimeInterval) {
         startDateData = Date.now.timeIntervalSince1970
         UserDefaults.standard.set(startDateData, forKey: "startDateKey")
+    }
+    
+    func saveMinutes() {
+        if let hoursVacation = Int(hours),
+           let minuteVacation = Int(minute) {
+            setupStartDate(startDate: Date.now.timeIntervalSince1970)
+            let minutes = convertToMinutes(hours: hoursVacation, minutes: minuteVacation)
+            vacationMinutes = minutes
+        }
     }
     
     func convertToMinutes(hours: Int, minutes: Int) -> Int {

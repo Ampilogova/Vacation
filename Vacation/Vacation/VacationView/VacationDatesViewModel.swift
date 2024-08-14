@@ -19,6 +19,7 @@ class VacationDatesViewModel {
     var showCreateVacation: Bool = false
     var showCreateSettings: Bool = false
     var showAlert: Bool = false
+    var vacationHoursMinutes = ""
     
     var vacationMinutes: Int {
         get {
@@ -29,18 +30,33 @@ class VacationDatesViewModel {
         }
     }
     
-    var startDateData: TimeInterval?
+    var lastUpdateDate: TimeInterval?
     
     init() {
-        fetchData()
+        updateVacations()
     }
     
-    func fetchData() {
+    func updateVacations() {
         do {
             vacations = try ModelContainer.shared.mainContext.fetch(FetchDescriptor<Vacation>())
-         } catch {
-             fatalError(error.localizedDescription)
-         }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func convertToHoursMinutes() -> String {
+        let time = vacationMinutes
+        let hour = time / 60
+        let minute = time % 60
+        vacationHoursMinutes = String(hour) + "h " + String(minute) + "m"
+        return vacationHoursMinutes
+    }
+    
+    func upDateData() {
+        addVacationHours()
+        updateVacationMinutes()
+        vacationBalance = balanceVacationDates()
+        sortVacationList()
     }
     
     func updateVacationMinutes() {
@@ -50,11 +66,6 @@ class VacationDatesViewModel {
                     if date < Date() {
                         vacationMinutes -= 240
                         ModelContainer.shared.mainContext.delete(vacation)
-                    }
-                    do {
-                        try ModelContainer.shared.mainContext.save()
-                    } catch {
-                        print("Error deleting chat: \(error)")
                     }
                 }
             }
@@ -127,7 +138,7 @@ class VacationDatesViewModel {
 
     func addVacationHours() {
         let calendar = Calendar.current
-        let startDate = Date(timeIntervalSince1970: startDateData ?? Date.now.timeIntervalSince1970)
+        let startDate = Date(timeIntervalSince1970: lastUpdateDate ?? Date.now.timeIntervalSince1970)
         guard !calendar.isDateInToday(startDate) else {
             return
         }
@@ -145,7 +156,7 @@ class VacationDatesViewModel {
                 vacationMinutes += 34
             }
         }
-        startDateData = Date.now.timeIntervalSince1970
+        lastUpdateDate = Date.now.timeIntervalSince1970
     }
     
     func isVacationDay(_ dateComponents: DateComponents) -> Bool {
@@ -168,16 +179,12 @@ class VacationDatesViewModel {
         vto = ""
     }
     
-    func delete(at offsets: IndexSet) {
+    func deleteVacation(at offsets: IndexSet) {
         for index in offsets {
             let vacation = vacations[index]
             ModelContainer.shared.mainContext.delete(vacation)
         }
-        do {
-            try ModelContainer.shared.mainContext.save()
-        } catch {
-            print("Error deleting chat: \(error)")
-        }
+        updateVacations()
     }
     
     func convertDateComponents(dates: Set<DateComponents>) -> String {

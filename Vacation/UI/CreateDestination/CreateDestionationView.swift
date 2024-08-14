@@ -11,11 +11,12 @@ import SwiftUI
 struct CreateDestinationView: View {
     
     @State var viewModel: CreateDestinationViewModel
+    @Environment(\.dismiss) private var dismiss
     
     init(viewModel: CreateDestinationViewModel) {
         self.viewModel = viewModel
     }
-
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -29,6 +30,7 @@ struct CreateDestinationView: View {
             .padding()
             .navigationBarItems(trailing: Button(action: {
                 viewModel.saveVacation()
+                dismiss()
             }, label: {
                 Text(viewModel.actionTitle)
             })

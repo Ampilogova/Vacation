@@ -25,13 +25,8 @@ struct SettingsView: View {
         .safeAreaInset(edge: .bottom) {
             VStack {
                 Button("Save", action: {
-                    if let hoursVacation = Int($viewModel.hours.wrappedValue),
-                    let minuteVacation = Int($viewModel.minute.wrappedValue) {
-                        viewModel.setupStartDate(startDate: Date.now.timeIntervalSince1970)
-                        let min = viewModel.convertToMinutes(hours: hoursVacation, minutes: minuteVacation)
-                        viewModel.vacationMinutes = min
-                        dismiss()
-                    }
+                    viewModel.saveMinutes()
+                    dismiss()
                 })
             }
         }

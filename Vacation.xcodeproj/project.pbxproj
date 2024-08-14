@@ -132,6 +132,24 @@
 			path = VacationService;
 			sourceTree = "<group>";
 		};
+		CE502E842C6D35C30054DFB5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEE23B552C4B26360029D0BE /* Vacation.swift */,
+				CE743A592C4C9F2E006CFC1F /* VacationTime.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE502E852C6D35CF0054DFB5 /* VacationView */ = {
+			isa = PBXGroup;
+			children = (
+				CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */,
+				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
+			);
+			path = VacationView;
+			sourceTree = "<group>";
+		};
 		CEE23B192C4B0E0C0029D0BE = {
 			isa = PBXGroup;
 			children = (
@@ -159,7 +177,7 @@
 				CE502E7D2C6AD29C0054DFB5 /* ModelContainer.swift */,
 				CE502E7F2C6AD2ED0054DFB5 /* Core */,
 				CE502E7B2C6AD1DA0054DFB5 /* UI */,
-				CEE23B592C4B32EB0029D0BE /* VacationView */,
+				CEE23B592C4B32EB0029D0BE /* Vacation */,
 				CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */,
 				CEE23B2B2C4B0E0E0029D0BE /* Preview Content */,
 			);
@@ -191,15 +209,13 @@
 			path = VacationUITests;
 			sourceTree = "<group>";
 		};
-		CEE23B592C4B32EB0029D0BE /* VacationView */ = {
+		CEE23B592C4B32EB0029D0BE /* Vacation */ = {
 			isa = PBXGroup;
 			children = (
-				CEE23B512C4B219F0029D0BE /* VacationDatesView.swift */,
-				CEC522DC2C56E7F400FF24EE /* VacationDatesViewModel.swift */,
-				CE743A592C4C9F2E006CFC1F /* VacationTime.swift */,
-				CEE23B552C4B26360029D0BE /* Vacation.swift */,
+				CE502E842C6D35C30054DFB5 /* Models */,
+				CE502E852C6D35CF0054DFB5 /* VacationView */,
 			);
-			path = VacationView;
+			path = Vacation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
