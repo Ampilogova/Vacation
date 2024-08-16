@@ -12,6 +12,7 @@ import SwiftUI
 @MainActor
 @Observable
 class CreateDestinationViewModel {
+    
     var vacationService: VacationService
     let vacation: Vacation?
     var destination = ""
@@ -47,13 +48,8 @@ class CreateDestinationViewModel {
             vacation?.destination = destination
             vacation?.dates = selectedDates
         } else {
-            let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays())
-            ModelContainer.shared.mainContext.insert(newVacation)
-        }
-        do {
-            try ModelContainer.shared.mainContext.save()
-        } catch {
-            print("Error saving vacation: \(error)")
+            let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays()) //move to service
+            vacationService.createVacation(newVacation)
         }
     }
     

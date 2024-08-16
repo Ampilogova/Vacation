@@ -16,18 +16,38 @@ protocol VacationService {
     
     var vacationBalance: VacationTime { get }
     
+    var workingHours: Int { get }
+    
     func futureBalance(at dateComponents: DateComponents) -> VacationTime
+    
+    func createVacation(_ vacation: Vacation)
+    
+    func deleteVacation(_ vacation: Vacation)
+    
 }
 
 @MainActor
 class VacationServiceImpl: VacationService {
     
-    lazy var vacations: [Vacation] = {
+    var workingHours: Int = 4
+    let context = ModelContainer.shared.mainContext
+    var vacations = [Vacation]()
+    
+    func fetchVacations() -> [Vacation] {
         let descriptor = FetchDescriptor<Vacation>()
-        let context = ModelContainer.shared.mainContext
         let result = try? context.fetch(descriptor)
         return result ?? []
-    }()
+    }
+    
+    func createVacation(_ vacation: Vacation) {
+        context.insert(vacation)
+        vacations = fetchVacations()
+    }
+    
+    func deleteVacation(_ vacation: Vacation) {
+        context.delete(vacation)
+        vacations = fetchVacations()
+    }
     
     var vacationBalance: VacationTime {
         get {
@@ -38,8 +58,9 @@ class VacationServiceImpl: VacationService {
             UserDefaults.standard.setValue(newValue.minutes, forKey: #function)
         }
     }
+    
     init() {
-        
+        vacations = fetchVacations()
     }
     
     func futureBalance(at dateComponents: DateComponents) -> VacationTime {
@@ -62,9 +83,7 @@ class VacationServiceImpl: VacationService {
                 result = result + 34
             }
         }
-        
-//        let workHours = 4
-        return result // / 60 / workHours // - vacationBalance
+        return result
     }
     
     func isVacationDay(at dateComponents: DateComponents) -> Bool {

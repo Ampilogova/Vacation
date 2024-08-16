@@ -11,37 +11,47 @@ import SwiftData
 @MainActor
 @Observable
 class VacationDatesViewModel {
-    let workHours = 4
-    var vacations: [Vacation] = []
-    var vacationBalance: Int = 0
+    
+    var vacationService: VacationService
     var destination: String = ""
     var vto: String = ""
     var showCreateVacation: Bool = false
     var showCreateSettings: Bool = false
     var showAlert: Bool = false
     var vacationHoursMinutes = ""
-    
-    var vacationMinutes: Int {
-        get {
-            return UserDefaults.standard.integer(forKey: "vacationMinutes")
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "vacationMinutes")
-        }
-    }
-    
     var lastUpdateDate: TimeInterval?
     
-    init() {
-        updateVacations()
+    var vacations: [Vacation] {
+        return vacationService.vacations
+    }
+    var balanceTitle: String {
+        let balance = vacationMinutes / 60 / vacationService.workingHours
+        return "Current balance: \(balance) days"
     }
     
-    func updateVacations() {
-        do {
-            vacations = try ModelContainer.shared.mainContext.fetch(FetchDescriptor<Vacation>())
-        } catch {
-            fatalError(error.localizedDescription)
+    var vacationBalance: Int { // to do: move to serive.
+        let vacationBalance = vacations.reduce(0) { total, vacation in
+            total + countWorkingDays(dates: vacation.dates)
         }
+        return vacationBalance
+    }
+    
+    var balanceVacationDates: String {
+        let result = vacationMinutes / 60 / vacationService.workingHours - vacationBalance
+        return "Balance after planned vacation: \(result) days"
+    }
+    
+    var vacationMinutes: Int { // move to service
+        get {
+            return UserDefaults.standard.integer(forKey: #function)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: #function)
+        }
+    }
+    
+    init(vacationService: VacationService) {
+        self.vacationService = vacationService
     }
     
     func convertToHoursMinutes() -> String {
@@ -55,8 +65,6 @@ class VacationDatesViewModel {
     func upDateData() {
         addVacationHours()
         updateVacationMinutes()
-        vacationBalance = balanceVacationDates()
-        sortVacationList()
     }
     
     func updateVacationMinutes() {
@@ -71,32 +79,19 @@ class VacationDatesViewModel {
             }
         }
     }
-    
-    
-    func totalVacationDays() -> Int {
-        return vacationMinutes / 60 / workHours
-    }
-    
-    func balanceVacationDates() -> Int {
-        vacationBalance = vacations.reduce(0) { total, vacation in
-            total + countWorkingDays(dates: vacation.dates)
-       }
 
-        return  vacationMinutes / 60 / workHours - vacationBalance
-   }
-
-    func sortVacationList() {
-        vacations.sort { (vacation1, vacation2) -> Bool in
-           
-            let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
-            let date2 = vacation2.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
-
-            if let date1 = date1, let date2 = date2 {
-                return date1 < date2
-            }
-            return false
-        }
-    }
+//    func sortVacationList() {
+//        vacations.sort { (vacation1, vacation2) -> Bool in
+//           
+//            let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
+//            let date2 = vacation2.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
+//
+//            if let date1 = date1, let date2 = date2 {
+//                return date1 < date2
+//            }
+//            return false
+//        }
+//    }
     
      func countWorkingDays(dates: Set<DateComponents>) -> Int {
         var count = 0
@@ -132,7 +127,7 @@ class VacationDatesViewModel {
             }
         }
         
-        return result / 60 / workHours - vacationBalance
+        return result / 60 / vacationService.workingHours - vacationBalance
     }
     
 
@@ -182,9 +177,8 @@ class VacationDatesViewModel {
     func deleteVacation(at offsets: IndexSet) {
         for index in offsets {
             let vacation = vacations[index]
-            ModelContainer.shared.mainContext.delete(vacation)
+            vacationService.deleteVacation(vacation)
         }
-        updateVacations()
     }
     
     func convertDateComponents(dates: Set<DateComponents>) -> String {

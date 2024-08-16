@@ -10,18 +10,18 @@ import SwiftData
 
 @MainActor
 struct VacationDatesView: View {
-    let vacationService: VacationService
-    @State private var viewModel = VacationDatesViewModel()
+    static var vacationService: VacationService = VacationServiceImpl()
+    @State private var viewModel = VacationDatesViewModel(vacationService: vacationService)
     @Environment(\.dismiss) private var dismiss
     
     init(vacationService: VacationService) {
-        self.vacationService = vacationService
+        self._viewModel = State(initialValue: VacationDatesViewModel(vacationService: Self.vacationService))
     }
     
     var vacationList: some View {
         List {
             ForEach(viewModel.vacations) { vacation in
-                NavigationLink(destination: CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: vacation, vacationService: vacationService))) {
+                NavigationLink(destination: CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: vacation, vacationService: VacationDatesView.vacationService))) {
                     HStack {
                         VStack(alignment: .leading) {
                             Text(vacation.destination)
@@ -55,14 +55,14 @@ struct VacationDatesView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Text("Current balance: \(viewModel.totalVacationDays()) days")
-                Text("Balance after planned vacation: \(viewModel.vacationBalance) days")
+                Text(viewModel.balanceTitle)
+                Text(viewModel.balanceVacationDates)
                 vacationList
                 Text(viewModel.convertToHoursMinutes())
                     .foregroundColor(.gray)
             }
             .onChange(of: viewModel.vacations) {
-                viewModel.vacationBalance = viewModel.balanceVacationDates()
+                viewModel.upDateData()
             }
             .navigationBarItems(leading: Button("Add VTO") {
                 viewModel.showAlert.toggle()
@@ -74,12 +74,10 @@ struct VacationDatesView: View {
             }
             .popover(isPresented:  $viewModel.showCreateVacation) {
                 NavigationView {
-                    CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: nil, vacationService: vacationService))
+                    CreateDestinationView(viewModel: CreateDestinationViewModel(vacation: nil, vacationService: VacationDatesView.vacationService))
                         .onDisappear {
-                            viewModel.updateVacations()
-                            print(viewModel.vacations)
-                            viewModel.sortVacationList()
-                        }
+                            viewModel.upDateData()
+                    }
                 }
             }
             .onAppear {
