@@ -18,12 +18,17 @@ protocol VacationService {
     
     var workingHours: Int { get }
     
+    var vacationMinutes: Int { get set}
+    
+    var lastUpdateDate: TimeInterval { get set }
+    
     func futureBalance(at dateComponents: DateComponents) -> VacationTime
     
     func createVacation(_ vacation: Vacation)
     
     func deleteVacation(_ vacation: Vacation)
     
+    func sortVacationList()
 }
 
 @MainActor
@@ -36,6 +41,7 @@ class VacationServiceImpl: VacationService {
     func fetchVacations() -> [Vacation] {
         let descriptor = FetchDescriptor<Vacation>()
         let result = try? context.fetch(descriptor)
+        sortVacationList()
         return result ?? []
     }
     
@@ -49,6 +55,15 @@ class VacationServiceImpl: VacationService {
         vacations = fetchVacations()
     }
     
+    var vacationMinutes: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: #function)
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: #function)
+        }
+    }
+    
     var vacationBalance: VacationTime {
         get {
             let value = UserDefaults.standard.integer(forKey: #function)
@@ -56,6 +71,15 @@ class VacationServiceImpl: VacationService {
         }
         set {
             UserDefaults.standard.setValue(newValue.minutes, forKey: #function)
+        }
+    }
+    
+    var lastUpdateDate: TimeInterval {
+        get {
+            return UserDefaults.standard.double(forKey: #function)
+        }
+        set {
+            return UserDefaults.standard.setValue(newValue, forKey: #function)
         }
     }
     
@@ -97,5 +121,18 @@ class VacationServiceImpl: VacationService {
             }
         }
         return false
+    }
+    
+    func sortVacationList() {
+        vacations.sort { (vacation1, vacation2) -> Bool in
+            
+            let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
+            let date2 = vacation2.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
+            
+            if let date1 = date1, let date2 = date2 {
+                return date1 < date2
+            }
+            return false
+        }
     }
 }

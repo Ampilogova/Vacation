@@ -19,13 +19,12 @@ class VacationDatesViewModel {
     var showCreateSettings: Bool = false
     var showAlert: Bool = false
     var vacationHoursMinutes = ""
-    var lastUpdateDate: TimeInterval?
     
     var vacations: [Vacation] {
         return vacationService.vacations
     }
     var balanceTitle: String {
-        let balance = vacationMinutes / 60 / vacationService.workingHours
+        let balance = vacationService.vacationMinutes / 60 / vacationService.workingHours
         return "Current balance: \(balance) days"
     }
     
@@ -37,25 +36,51 @@ class VacationDatesViewModel {
     }
     
     var balanceVacationDates: String {
-        let result = vacationMinutes / 60 / vacationService.workingHours - vacationBalance
+        let result = vacationService.vacationMinutes / 60 / vacationService.workingHours - vacationBalance
         return "Balance after planned vacation: \(result) days"
     }
     
-    var vacationMinutes: Int { // move to service
-        get {
-            return UserDefaults.standard.integer(forKey: #function)
+    var vacationDates: String {
+        var result = ""
+        for vacation in vacations {
+            let calendar = Calendar.current
+            let dates = vacation.dates.compactMap { calendar.date(from: $0 )}
+            let sortedDates = dates.sorted(by: <).compactMap { calendar.dateComponents([.month, .day, .year], from: $0)}
+            if let firstdDate = sortedDates.first, let lastDate =  sortedDates.last {
+                result = convertToString(date: firstdDate) + " - " + convertToString(date: lastDate)
+            }
         }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: #function)
-        }
+        return result
     }
+    
+    var workingDays: String { // doesn't work
+        var result = 0
+        for vacation in vacations {
+            result += countWorkingDays(dates: vacation.dates)
+        }
+        return ("\(result) days")
+    }
+    
+    func countWorkingDays(dates: Set<DateComponents>) -> Int {
+       var count = 0
+       let wednesday = 4
+       let thursday = 5
+       for date in dates {
+           if let weekday = date.weekday {
+               if weekday != wednesday && weekday != thursday {
+                   count += 1
+               }
+           }
+       }
+       return count
+   }
     
     init(vacationService: VacationService) {
         self.vacationService = vacationService
     }
     
     func convertToHoursMinutes() -> String {
-        let time = vacationMinutes
+        let time = vacationService.vacationMinutes
         let hour = time / 60
         let minute = time % 60
         vacationHoursMinutes = String(hour) + "h " + String(minute) + "m"
@@ -72,39 +97,12 @@ class VacationDatesViewModel {
             for dateComponent in vacation.dates {
                 if let date = Calendar.current.date(from: dateComponent) {
                     if date < Date() {
-                        vacationMinutes -= 240
+                        vacationService.vacationMinutes -= 240
                         ModelContainer.shared.mainContext.delete(vacation)
                     }
                 }
             }
         }
-    }
-
-//    func sortVacationList() {
-//        vacations.sort { (vacation1, vacation2) -> Bool in
-//           
-//            let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
-//            let date2 = vacation2.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
-//
-//            if let date1 = date1, let date2 = date2 {
-//                return date1 < date2
-//            }
-//            return false
-//        }
-//    }
-    
-     func countWorkingDays(dates: Set<DateComponents>) -> Int {
-        var count = 0
-        let wednesday = 4
-        let thursday = 5
-        for date in dates {
-            if let weekday = date.weekday {
-                if weekday != wednesday && weekday != thursday {
-                    count += 1
-                }
-            }
-        }
-        return count
     }
     
     func checkAvailability(futureDay: Date) -> Int {
@@ -113,7 +111,7 @@ class VacationDatesViewModel {
         let daysDifference = calendar.dateComponents([.day], from: today, to: futureDay).day ?? 0
         
         guard daysDifference >= 0 else { return 0 }
-        var result = vacationMinutes
+        var result = vacationService.vacationMinutes
         
         for i in 0..<daysDifference {
             let dateToCheck = calendar.date(byAdding: .day, value: i, to: today) ?? today
@@ -133,7 +131,7 @@ class VacationDatesViewModel {
 
     func addVacationHours() {
         let calendar = Calendar.current
-        let startDate = Date(timeIntervalSince1970: lastUpdateDate ?? Date.now.timeIntervalSince1970)
+        let startDate = Date(timeIntervalSince1970: vacationService.lastUpdateDate)
         guard !calendar.isDateInToday(startDate) else {
             return
         }
@@ -148,10 +146,10 @@ class VacationDatesViewModel {
             let thursday = 5
             
             if weekday != wednesday && weekday != thursday && !isVacationDay(today) {
-                vacationMinutes += 34
+                vacationService.vacationMinutes += 32
             }
         }
-        lastUpdateDate = Date.now.timeIntervalSince1970
+        vacationService.lastUpdateDate = Date.now.timeIntervalSince1970
     }
     
     func isVacationDay(_ dateComponents: DateComponents) -> Bool {
@@ -167,10 +165,10 @@ class VacationDatesViewModel {
         return false
     }
     
-    func submit() {
+    func submitVTO() {
         let hour = 4.0 // price for 1 hours
         let num = (Double(vto) ?? 0.0) / 60.0
-        vacationMinutes -= Int(hour * num)
+        vacationService.vacationMinutes -= Int(hour * num)
         vto = ""
     }
     
@@ -181,18 +179,6 @@ class VacationDatesViewModel {
         }
     }
     
-    func convertDateComponents(dates: Set<DateComponents>) -> String {
-       var result = ""
-       let array = dates
-       let calendar = Calendar.current
-       let dates = array.compactMap { calendar.date(from: $0 )}
-       let sortedDates = dates.sorted(by: <).compactMap { calendar.dateComponents([.month, .day, .year], from: $0)}
-       if let firstdDate = sortedDates.first, let lastDate =  sortedDates.last {
-           result = convertToString(date: firstdDate) + " - " + convertToString(date: lastDate)
-       }
-       return result
-   }
-   
     func convertToString(date: DateComponents) -> String {
        var dateString = ""
        let calendar = Calendar.current

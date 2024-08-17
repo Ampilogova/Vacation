@@ -26,10 +26,10 @@ struct VacationDatesView: View {
                         VStack(alignment: .leading) {
                             Text(vacation.destination)
                                 .font(Font.headline.bold())
-                            Text(viewModel.convertDateComponents(dates: vacation.dates)).foregroundStyle(.secondary)
+                            Text(viewModel.vacationDates).foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Text(String(viewModel.countWorkingDays(dates: vacation.dates)) + " days")
+                        Text(viewModel.workingDays)
                     }
                 }
             }
@@ -90,7 +90,7 @@ struct VacationDatesView: View {
                 Button("Cancel", action:  {
                     dismiss()
                 })
-                Button("Add", action: viewModel.submit)
+                Button("Add", action: viewModel.submitVTO)
             }
         }
     }
