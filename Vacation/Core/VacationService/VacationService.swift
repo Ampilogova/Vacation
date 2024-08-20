@@ -29,6 +29,8 @@ protocol VacationService {
     func deleteVacation(_ vacation: Vacation)
     
     func sortVacationList()
+    
+    func countWorkingDays(dates: Set<DateComponents>) -> Int
 }
 
 @MainActor
@@ -135,4 +137,18 @@ class VacationServiceImpl: VacationService {
             return false
         }
     }
+    
+    func countWorkingDays(dates: Set<DateComponents>) -> Int {
+       var count = 0
+       let wednesday = 4
+       let thursday = 5
+       for date in dates {
+           if let weekday = date.weekday {
+               if weekday != wednesday && weekday != thursday {
+                   count += 1
+               }
+           }
+       }
+       return count
+   }
 }

@@ -30,7 +30,7 @@ class VacationDatesViewModel {
     
     var vacationBalance: Int { // to do: move to serive.
         let vacationBalance = vacations.reduce(0) { total, vacation in
-            total + countWorkingDays(dates: vacation.dates)
+            total + vacationService.countWorkingDays(dates: vacation.dates)
         }
         return vacationBalance
     }
@@ -40,40 +40,18 @@ class VacationDatesViewModel {
         return "Balance after planned vacation: \(result) days"
     }
     
-    var vacationDates: String {
+
+    func vacationDatesString(vacation: Vacation) -> String {
         var result = ""
-        for vacation in vacations {
-            let calendar = Calendar.current
-            let dates = vacation.dates.compactMap { calendar.date(from: $0 )}
-            let sortedDates = dates.sorted(by: <).compactMap { calendar.dateComponents([.month, .day, .year], from: $0)}
-            if let firstdDate = sortedDates.first, let lastDate =  sortedDates.last {
-                result = convertToString(date: firstdDate) + " - " + convertToString(date: lastDate)
-            }
+        let calendar = Calendar.current
+        let dates = vacation.dates.compactMap { calendar.date(from: $0 )}
+        let sortedDates = dates.sorted(by: <).compactMap { calendar.dateComponents([.month, .day, .year], from: $0)}
+        if let firstdDate = sortedDates.first, let lastDate =  sortedDates.last {
+            result = convertToString(date: firstdDate) + " - " + convertToString(date: lastDate)
+            
         }
         return result
     }
-    
-    var workingDays: String { // doesn't work
-        var result = 0
-        for vacation in vacations {
-            result += countWorkingDays(dates: vacation.dates)
-        }
-        return ("\(result) days")
-    }
-    
-    func countWorkingDays(dates: Set<DateComponents>) -> Int {
-       var count = 0
-       let wednesday = 4
-       let thursday = 5
-       for date in dates {
-           if let weekday = date.weekday {
-               if weekday != wednesday && weekday != thursday {
-                   count += 1
-               }
-           }
-       }
-       return count
-   }
     
     init(vacationService: VacationService) {
         self.vacationService = vacationService

@@ -40,6 +40,7 @@ class CreateDestinationViewModel {
     init(vacation: Vacation?, vacationService: VacationService) {
         self.vacation = vacation
         self.vacationService = vacationService
+        self.destination = vacation?.destination ?? ""
     }
     
     
@@ -49,8 +50,13 @@ class CreateDestinationViewModel {
             vacation?.dates = selectedDates
         } else {
             let newVacation = Vacation(destionation: destination, dates: datesWithWeekdays()) //move to service
+            newVacation.workingDays = plannedVacation(newVacation)
             vacationService.createVacation(newVacation)
         }
+    }
+    
+    func plannedVacation(_ vacation: Vacation) -> String {
+        return ("\(String(vacationService.countWorkingDays(dates: vacation.dates))) days")
     }
     
     private func datesWithWeekdays() -> Set<DateComponents> {

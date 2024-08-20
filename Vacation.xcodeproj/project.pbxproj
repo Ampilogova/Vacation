@@ -92,6 +92,7 @@
 		CE502E7B2C6AD1DA0054DFB5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				CEE23B592C4B32EB0029D0BE /* Vacation */,
 				CE502E802C6AD3110054DFB5 /* SettingsView */,
 				CE502E7C2C6AD25A0054DFB5 /* CreateDestination */,
 			);
@@ -177,7 +178,6 @@
 				CE502E7D2C6AD29C0054DFB5 /* ModelContainer.swift */,
 				CE502E7F2C6AD2ED0054DFB5 /* Core */,
 				CE502E7B2C6AD1DA0054DFB5 /* UI */,
-				CEE23B592C4B32EB0029D0BE /* Vacation */,
 				CEE23B292C4B0E0E0029D0BE /* Assets.xcassets */,
 				CEE23B2B2C4B0E0E0029D0BE /* Preview Content */,
 			);

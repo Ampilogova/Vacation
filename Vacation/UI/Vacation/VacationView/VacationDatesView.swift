@@ -26,10 +26,10 @@ struct VacationDatesView: View {
                         VStack(alignment: .leading) {
                             Text(vacation.destination)
                                 .font(Font.headline.bold())
-                            Text(viewModel.vacationDates).foregroundStyle(.secondary)
+                            Text(viewModel.vacationDatesString(vacation: vacation)).foregroundStyle(.secondary)
                         }
                         Spacer()
-                        Text(viewModel.workingDays)
+                        Text(vacation.workingDays ?? "")
                     }
                 }
             }

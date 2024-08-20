@@ -12,12 +12,14 @@ import SwiftData
 class Vacation: ObservableObject, Identifiable {
     var id = UUID()
     var destination: String
+    var workingDays: String?
     var dates: Set<DateComponents>
     
     init(id: UUID = UUID(), destionation: String, dates: Set<DateComponents>) {
         self.id = id
         self.destination = destionation
         self.dates = dates
+//        self.workingDays = workingDays
     }
 }
 
