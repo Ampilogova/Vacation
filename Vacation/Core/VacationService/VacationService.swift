@@ -28,7 +28,7 @@ protocol VacationService {
     
     func deleteVacation(_ vacation: Vacation)
     
-    func sortVacationList()
+//    func sortVacationList(_ vacations: [Vacation])
     
     func countWorkingDays(dates: Set<DateComponents>) -> Int
 }
@@ -42,9 +42,9 @@ class VacationServiceImpl: VacationService {
     
     func fetchVacations() -> [Vacation] {
         let descriptor = FetchDescriptor<Vacation>()
-        let result = try? context.fetch(descriptor)
-        sortVacationList()
-        return result ?? []
+        var result = (try? context.fetch(descriptor)) ?? []
+        sortVacationList(&result)
+        return result
     }
     
     func createVacation(_ vacation: Vacation) {
@@ -125,7 +125,7 @@ class VacationServiceImpl: VacationService {
         return false
     }
     
-    func sortVacationList() {
+    func sortVacationList(_ vacations: inout [Vacation]) {
         vacations.sort { (vacation1, vacation2) -> Bool in
             
             let date1 = vacation1.dates.compactMap { Calendar.current.date(from: $0) }.sorted().first
